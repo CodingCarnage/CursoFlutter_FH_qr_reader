@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Historial'),
+        title: Text('Datos'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.delete_forever),
@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text('Home Page'),
+        child: Icon(Icons.block),
       ),
       floatingActionButton: ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
