@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader/providers/db_provider.dart';
 
 import 'package:qr_reader/widgets/custom_navigationbar.dart';
 import 'package:qr_reader/widgets/scan_button.dart';
@@ -38,7 +39,10 @@ class _HomePageBody extends StatelessWidget {
     final UiProvider uiProvider = Provider.of<UiProvider>(context);
 
     final currentIndex = uiProvider.selectedMenuOption;
-
+    
+    // TODO: Temporal solo llamar la base de datps
+    DBProvider.dbProvider.database;
+    
     switch (currentIndex) {
       case 0:
         return HistorialMapasPage();
