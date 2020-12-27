@@ -40,9 +40,9 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final UiProvider uiProvider = Provider.of<UiProvider>(context);
 
-    final currentIndex = uiProvider.selectedMenuOption;
+    final int currentIndex = uiProvider.selectedMenuOption;
     
-    final tempScan = new ScanModel(valor: 'https://www.google.com');
+    final ScanModel tempScan = new ScanModel(valor: 'https://www.google.com');
     DBProvider.dbProvider.newScan(tempScan);
     
     switch (currentIndex) {

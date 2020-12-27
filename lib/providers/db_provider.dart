@@ -61,6 +61,8 @@ class DBProvider {
   Future<int> newScan(ScanModel scanModel) async {
     final db = await database;
     final res = await db.insert('Scans', scanModel.toJson());
+    
+    // Ultimo ID del en la Tabla.
     return res;
   }
 }
