@@ -44,14 +44,14 @@ class DBProvider {
   }
 
   Future<int> newScanRaw(ScanModel scanModel) async {
-    final id = scanModel.id;
-    final tipo = scanModel.tipo;
-    final valor = scanModel.valor;
+    final int id = scanModel.id;
+    final String tipo = scanModel.tipo;
+    final String valor = scanModel.valor;
     
     // Verify database.
-    final db = await database;
+    final Database db = await database;
 
-    final res = await db.rawInsert('''
+    final int res = await db.rawInsert('''
       INSERT INTO Scans(id, tipo, valor) VALUES ($id, '$tipo', '$valor')
     ''');
 
@@ -59,10 +59,31 @@ class DBProvider {
   }
 
   Future<int> newScan(ScanModel scanModel) async {
-    final db = await database;
-    final res = await db.insert('Scans', scanModel.toJson());
+    final Database db = await database;
+    final int res = await db.insert('Scans', scanModel.toJson());
     
     // Ultimo ID del en la Tabla.
     return res;
+  }
+
+  Future<ScanModel> getScanById(int id) async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
+
+    return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
+  }
+
+  Future<List<ScanModel>> getScanAll() async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> res = await db.query('Scans');
+
+    return res.isNotEmpty ? res.map((scan) => ScanModel.fromJson(scan)).toList() : [];
+  }
+
+  Future<List<ScanModel>> getScanByTipo(String tipo) async {
+    final Database db = await database;
+    final List<Map<String, dynamic>> res = await db.query('Scans', where: 'tipo = ?', whereArgs: [tipo]);
+
+    return res.isNotEmpty ? res.map((scan) => ScanModel.fromJson(scan)).toList() : [];
   }
 }
