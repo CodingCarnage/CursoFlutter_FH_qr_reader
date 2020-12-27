@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_reader/providers/db_provider.dart';
 
 import 'package:qr_reader/widgets/custom_navigationbar.dart';
 import 'package:qr_reader/widgets/scan_button.dart';
+
 import 'package:qr_reader/providers/ui_provider.dart';
+import 'package:qr_reader/providers/db_provider.dart';
+
 import 'package:qr_reader/pages/historial_mapas_page.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
 
@@ -40,8 +42,8 @@ class _HomePageBody extends StatelessWidget {
 
     final currentIndex = uiProvider.selectedMenuOption;
     
-    // TODO: Temporal solo llamar la base de datps
-    DBProvider.dbProvider.database;
+    final tempScan = new ScanModel(valor: 'https://www.google.com');
+    DBProvider.dbProvider.newScan(tempScan);
     
     switch (currentIndex) {
       case 0:
