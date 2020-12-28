@@ -5,7 +5,6 @@ import 'package:qr_reader/widgets/custom_navigationbar.dart';
 import 'package:qr_reader/widgets/scan_button.dart';
 
 import 'package:qr_reader/providers/ui_provider.dart';
-import 'package:qr_reader/providers/db_provider.dart';
 
 import 'package:qr_reader/pages/historial_mapas_page.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
@@ -41,9 +40,6 @@ class _HomePageBody extends StatelessWidget {
     final UiProvider uiProvider = Provider.of<UiProvider>(context);
 
     final int currentIndex = uiProvider.selectedMenuOption;
-    
-    //final ScanModel tempScan = new ScanModel(valor: 'https://www.youtube.com');
-    //DBProvider.dbProvider.getScanById(9).then((scan) => print(scan.valor));
     
     switch (currentIndex) {
       case 0:
