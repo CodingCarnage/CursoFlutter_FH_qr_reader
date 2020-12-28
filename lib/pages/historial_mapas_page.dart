@@ -5,8 +5,15 @@ class HistorialMapasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Historial Mapas Page'),
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (_, int i) => ListTile(
+        leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
+        title: Text('https://www.google.com'),
+        subtitle: Text('ID: 1'),
+        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
+        onTap: () => print('Hacer algo'),
+      ),
     );
   }
 }
