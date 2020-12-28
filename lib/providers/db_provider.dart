@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -25,7 +24,6 @@ class DBProvider {
     // Obtener e path de la base de datos
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final String path = join(documentsDirectory.path, 'ScansDB.db');
-    print(path);
 
     // Crear base de datos
     return await openDatabase(
@@ -44,6 +42,7 @@ class DBProvider {
     );
   }
 
+  /*
   Future<int> newScanRaw(ScanModel scanModel) async {
     final int id = scanModel.id;
     final String tipo = scanModel.tipo;
@@ -58,8 +57,9 @@ class DBProvider {
 
     return res;
   }
+  */
 
-  Future<int> newScan(ScanModel scanModel) async {
+  Future<int> insertScan(ScanModel scanModel) async {
     final Database db = await database;
     final int res = await db.insert('Scans', scanModel.toJson());
     
@@ -67,30 +67,44 @@ class DBProvider {
     return res;
   }
 
-  Future<ScanModel> getScanById(int id) async {
+  Future<ScanModel> getIdScan(int id) async {
     final Database db = await database;
     final List<Map<String, dynamic>> res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
 
     return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
   }
 
-  Future<List<ScanModel>> getScanAll() async {
+  Future<List<ScanModel>> getAllScan() async {
     final Database db = await database;
     final List<Map<String, dynamic>> res = await db.query('Scans');
 
     return res.isNotEmpty ? res.map((scan) => ScanModel.fromJson(scan)).toList() : [];
   }
 
-  Future<List<ScanModel>> getScanByTipo(String tipo) async {
+  Future<List<ScanModel>> getTipoScan(String tipo) async {
     final Database db = await database;
     final List<Map<String, dynamic>> res = await db.query('Scans', where: 'tipo = ?', whereArgs: [tipo]);
 
     return res.isNotEmpty ? res.map((scan) => ScanModel.fromJson(scan)).toList() : [];
   }
 
-  Future<int> updateScan(ScanModel newScan) async {
+  Future<int> updateScan(ScanModel scanModel) async {
     final Database db = await database;
-    final int res = await db.update('Scans', newScan.toJson(), where: 'id = ?', whereArgs: [newScan.id]);
+    final int res = await db.update('Scans', scanModel.toJson(), where: 'id = ?', whereArgs: [scanModel.id]);
+
+    return res;
+  }
+
+  Future<int> deleteScan(int id) async {
+    final Database db = await database;
+    final int res = await db.delete('Scans', where: 'id = ?', whereArgs: [id]);
+
+    return res;
+  }
+
+  Future<int> deleteAllScan(int id) async {
+    final Database db = await database;
+    final int res = await db.delete('Scans');
 
     return res;
   }
