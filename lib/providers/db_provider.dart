@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -85,5 +86,12 @@ class DBProvider {
     final List<Map<String, dynamic>> res = await db.query('Scans', where: 'tipo = ?', whereArgs: [tipo]);
 
     return res.isNotEmpty ? res.map((scan) => ScanModel.fromJson(scan)).toList() : [];
+  }
+
+  Future<int> updateScan(ScanModel newScan) async {
+    final Database db = await database;
+    final int res = await db.update('Scans', newScan.toJson(), where: 'id = ?', whereArgs: [newScan.id]);
+
+    return res;
   }
 }
