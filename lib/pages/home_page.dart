@@ -17,11 +17,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Datos'),
+        title: Text('Historial'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.delete_forever),
-            onPressed: () {},
+            onPressed: () {
+              final ScanListProvider scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
+              scanListProvider.deleteAllScan();
+            },
           )
         ],
       ),
