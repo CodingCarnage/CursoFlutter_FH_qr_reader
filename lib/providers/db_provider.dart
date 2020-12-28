@@ -67,7 +67,7 @@ class DBProvider {
     return res;
   }
 
-  Future<ScanModel> getIdScan(int id) async {
+  Future<ScanModel> getByIdScan(int id) async {
     final Database db = await database;
     final List<Map<String, dynamic>> res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
 
@@ -81,7 +81,7 @@ class DBProvider {
     return res.isNotEmpty ? res.map((scan) => ScanModel.fromJson(scan)).toList() : [];
   }
 
-  Future<List<ScanModel>> getTipoScan(String tipo) async {
+  Future<List<ScanModel>> getByTipoScan(String tipo) async {
     final Database db = await database;
     final List<Map<String, dynamic>> res = await db.query('Scans', where: 'tipo = ?', whereArgs: [tipo]);
 
@@ -102,7 +102,7 @@ class DBProvider {
     return res;
   }
 
-  Future<int> deleteAllScan(int id) async {
+  Future<int> deleteAllScan() async {
     final Database db = await database;
     final int res = await db.delete('Scans');
 
