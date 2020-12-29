@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           // Cambia el color de los iconos que esten sobre mi PrimaryColor a blanco.
           primaryIconTheme: IconThemeData(color: Colors.white),
           // Cambia el color de los iconos del status bar a blanco.
-          appBarTheme: AppBarTheme(brightness: Brightness.dark),
+          appBarTheme: AppBarTheme(brightness: Brightness.dark, centerTitle: false),
           fontFamily: 'Poppins',
         ),
         initialRoute: 'home',
