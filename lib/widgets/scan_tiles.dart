@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:qr_reader/providers/scan_list_provider.dart';
+import 'package:qr_reader/utils/utils.dart';
 
 class ScanTiles extends StatelessWidget {
   const ScanTiles({Key key, @required this.tipo}) : super(key: key);
@@ -19,7 +20,7 @@ class ScanTiles extends StatelessWidget {
       itemBuilder: (_, int i) => Dismissible(
         key: UniqueKey(),
         background: Container(
-          padding: const EdgeInsets.only(left: 5.0),
+          padding: const EdgeInsets.only(left: 10.0),
           color: Colors.red,
           alignment: Alignment.centerLeft,
           child: const Icon(Icons.delete, size: 30.0, color: Colors.white),
@@ -36,7 +37,7 @@ class ScanTiles extends StatelessWidget {
           title: Text(scans[i].valor),
           subtitle: Text('Id: ${scans[i].id.toString()}'),
           trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
-          onTap: () => print('Hacer algo'),
+          onTap: () => launchURL(context, scans[i]),
         ),
       ),
     );
