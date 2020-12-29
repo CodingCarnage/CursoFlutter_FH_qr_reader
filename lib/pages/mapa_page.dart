@@ -24,12 +24,19 @@ class _MapaPageState extends State<MapaPage> {
       zoom: 17,
     );
 
+    Set<Marker> markers = new Set<Marker>();
+    markers.add(new Marker(
+      markerId: MarkerId('geo-location'),
+      position: scanModel.getLatLng(),
+    ));
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Mapa'),
       ),
       body: GoogleMap(
         mapType: MapType.normal,
+        markers: markers,
         initialCameraPosition: puntoIinical,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
