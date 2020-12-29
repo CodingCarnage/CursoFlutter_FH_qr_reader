@@ -33,6 +33,16 @@ class _MapaPageState extends State<MapaPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mapa'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.location_searching),
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller
+                  .animateCamera(CameraUpdate.newCameraPosition(puntoIinical));
+            },
+          )
+        ],
       ),
       body: GoogleMap(
         mapType: MapType.normal,
@@ -41,6 +51,10 @@ class _MapaPageState extends State<MapaPage> {
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.layers),
+        onPressed: () {},
       ),
     );
   }
