@@ -22,7 +22,8 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.delete_forever),
             onPressed: () {
-              final ScanListProvider scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
+              final ScanListProvider scanListProvider =
+                  Provider.of<ScanListProvider>(context, listen: false);
               scanListProvider.deleteAllScan();
             },
           )
@@ -45,15 +46,11 @@ class _HomePageBody extends StatelessWidget {
 
     final int currentIndex = uiProvider.selectedMenuOption;
 
-    final ScanListProvider scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
-    
     switch (currentIndex) {
       case 0:
-        scanListProvider.loadByTipoScan('geo');
         return HistorialMapasPage();
         break;
       case 1:
-        scanListProvider.loadByTipoScan('http');
         return DireccionesPage();
         break;
       default:
