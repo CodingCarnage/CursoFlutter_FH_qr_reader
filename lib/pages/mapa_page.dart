@@ -48,6 +48,7 @@ class _MapaPageState extends State<MapaPage> {
       body: GoogleMap(
         mapType: _mapType,
         markers: markers,
+        zoomControlsEnabled: false,
         initialCameraPosition: puntoIinical,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
