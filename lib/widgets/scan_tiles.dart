@@ -15,6 +15,10 @@ class ScanTiles extends StatelessWidget {
         Provider.of<ScanListProvider>(context);
     final scans = scanListProvider.scans;
 
+    this.tipo == 'http'
+        ? scanListProvider.loadByTipoScan('http')
+        : scanListProvider.loadByTipoScan('geo');
+
     return ListView.builder(
       itemCount: scans.length,
       itemBuilder: (_, int i) => Dismissible(
