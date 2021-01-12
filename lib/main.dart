@@ -26,8 +26,7 @@ class MyApp extends StatelessWidget {
           primaryColorLight: Color.fromARGB(255, 255, 224, 178),
           accentColor: Color.fromARGB(255, 76, 175, 80),
           // Cambia el color del Texto que este sobre mi PrimaryColor a blanco.
-          primaryTextTheme:
-              TextTheme(headline6: TextStyle(color: Colors.white)),
+          primaryTextTheme: TextTheme(headline6: TextStyle(color: Colors.white)),
           // Cambia el color de los iconos que esten sobre mi PrimaryColor a blanco.
           primaryIconTheme: IconThemeData(color: Colors.white),
           // Cambia el color de los iconos del status bar a blanco.
